@@ -5,6 +5,7 @@ import static net.minecraft.state.properties.BlockStateProperties.AXIS;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.simibubi.create.Create;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.base.IRotate;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
@@ -235,13 +236,18 @@ public class RotationPropagator {
 
 			boolean tooFast = Math.abs(newSpeed) > AllConfigs.SERVER.kinetics.maxRotationSpeed.get();
 			boolean speedChangedTooOften = currentTE.getFlickerScore() > MAX_FLICKER_SCORE;
-			if (tooFast || speedChangedTooOften) {
+			if (speedChangedTooOften) {
+				Create.LOGGER.warn("Wanted to PLOP " + pos + ": speedChangedTooOften " + speedChangedTooOften);
+			}
+			if (tooFast) {
+				Create.LOGGER.warn("Did PLOP " + pos + ": tooFast " + tooFast);
 				world.destroyBlock(pos, true);
 				return;
 			}
 
 			// Opposite directions
 			if (incompatible) {
+				Create.LOGGER.warn("Did PLOP " + pos + ": incompatible " + incompatible);
 				world.destroyBlock(pos, true);
 				return;
 
@@ -267,7 +273,8 @@ public class RotationPropagator {
 					if (!currentTE.hasNetwork() || currentTE.network.equals(neighbourTE.network)) {
 						float epsilon = Math.abs(speedOfNeighbour) / 256f / 256f;
 						if (Math.abs(newSpeed) > Math.abs(speedOfNeighbour) + epsilon)
-							world.destroyBlock(pos, true);
+							Create.LOGGER.warn("Wanted to PLOP " + pos + ": overpowered! Math.abs(newSpeed " + newSpeed + ") > Math.abs(speedOfNeighbour " + speedOfNeighbour + ") + epsilon " + epsilon);
+							//world.destroyBlock(pos, true);
 						continue;
 					}
 

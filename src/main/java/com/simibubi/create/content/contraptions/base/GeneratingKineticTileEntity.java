@@ -2,6 +2,7 @@ package com.simibubi.create.content.contraptions.base;
 
 import java.util.List;
 
+import com.simibubi.create.Create;
 import com.simibubi.create.content.contraptions.KineticNetwork;
 import com.simibubi.create.content.contraptions.base.IRotate.SpeedLevel;
 import com.simibubi.create.content.contraptions.goggles.IHaveGoggleInformation;
@@ -140,8 +141,9 @@ public abstract class GeneratingKineticTileEntity extends KineticTileEntity {
 
 			// Staying below Overpowered speed
 			if (Math.abs(prevSpeed) >= Math.abs(speed)) {
-				if (Math.signum(prevSpeed) != Math.signum(speed))
-					level.destroyBlock(worldPosition, true);
+				Create.LOGGER.warn("Wanted to PLOP: Math.abs(prevSpeed " + prevSpeed + ") >= Math.abs(speed " + speed + ")");
+				/*if (Math.signum(prevSpeed) != Math.signum(speed))
+					level.destroyBlock(worldPosition, true);*/
 				return;
 			}
 
