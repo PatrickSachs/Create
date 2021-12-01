@@ -5,15 +5,15 @@ license="MIT"
 
 [[mods]]
 modId="create"
-version="v0.3.2g"
-displayName="Create"
+version="v0.3.2f"
+displayName="Create [SAHNEE BUILD]"
 #updateJSONURL=""
 displayURL="https://www.curseforge.com/minecraft/mc-mods/create"
 logoFile="logo.png"
 #credits=""
-authors="simibubi"
+authors="sahnee.dev"
 description='''
-Technology that empowers the player.'''
+Technology that empowers the player. [SAHNEE BUILD]'''
 
 [[dependencies.create]]
     modId="forge"
